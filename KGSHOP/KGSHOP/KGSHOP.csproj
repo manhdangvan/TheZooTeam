@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>aspnet-KGSHOP-39E543EC-6B09-47F1-BDC8-0B30E03CFB4D</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20191111170420_ShopProvince.cs" />
+    <Compile Remove="Data\Migrations\20191111170420_ShopProvince.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191113163825_addAppointment.cs" />
+    <Compile Remove="Data\Migrations\20191113163825_addAppointment.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191113171522_addAppointment2.cs" />
+    <Compile Remove="Data\Migrations\20191113171522_addAppointment2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191114085839_ApplicationUser.cs" />
+    <Compile Remove="Data\Migrations\20191114085839_ApplicationUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191126083955_AppointmentUser.cs" />
+    <Compile Remove="Data\Migrations\20191126083955_AppointmentUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191208160557_AddSalesPersonToCustomerBuy.cs" />
+    <Compile Remove="Data\Migrations\20191208160557_AddSalesPersonToCustomerBuy.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
+
+</Project>

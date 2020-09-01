@@ -1,0 +1,51 @@
+﻿@model KGSHOP.Models.ViewModel.ShopViewModel
+@using KGSHOP.ExtensionShop
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-info">Shop Details</h2>
+<form method="post" asp-action="Details">
+    <div class="p-4 border rounded">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Shops.Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Shops.Name" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Shops.Address"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Shops.Address" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Shops.Tel"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Shops.Tel" disabled class="form-control" />
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Provinces"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.Shops.Province_ID" asp-items="Model.Provinces.ToSelectListItem(Model.Shops.Province_ID)" disabled class="form-control"></select>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <a asp-action="Edit" asp-route-id="@Model.Shops.ID" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>

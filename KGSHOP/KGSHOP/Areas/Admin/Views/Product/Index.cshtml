@@ -1,0 +1,94 @@
+﻿@model IEnumerable<KGSHOP.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info"> Products List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info">&nbsp; New Product </a>
+    </div>
+</div>
+
+<head>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+
+    <table id="customers">
+        <tr>
+            <th>Name</th>
+            <th>Detail</th>
+            <th>Price</th>
+            <th>PriceNew</th>
+            <th>Order</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>GroupProduct</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name                    
+                </td>
+                <td>
+                    @item.Detail
+                </td>
+                <td>
+                    @item.Price                  
+                </td>
+                <td>
+                    @item.PriceNew                   
+                </td>
+                <td>
+                    @item.Order
+                </td>
+                <td>
+                    @item.Date                   
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    @item.GroupProducts.Name
+                </td>
+                 <partial name="_TableButtonPatial" model="item.ID" />
+            </tr>
+        }
+    </table>
+
+</body>
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<KGSHOP.Models.Support>
+@using KGSHOP.Utility
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info"> Support List</h2>
+    </div>
+    @if (!User.IsInRole(SD.AdminEndUser) && !User.IsInRole(SD.SuperAdminEndUser))
+    {
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info">&nbsp; New Support </a>
+        </div>
+    }
+</div>
+
+<head>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+
+    <table id="customers">
+        <tr>
+
+            <th>Content</th>
+            <th>Admin Reply</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+
+        <td>
+            @item.Content
+        </td>
+        <td>
+            @item.Reply
+        </td>
+        @if (User.IsInRole(SD.AdminEndUser) || User.IsInRole(SD.SuperAdminEndUser))
+        {
+            <partial name="ButtonReply" model="item.ID" />
+        }
+    </tr>
+        }
+    </table>
+
+</body>
+

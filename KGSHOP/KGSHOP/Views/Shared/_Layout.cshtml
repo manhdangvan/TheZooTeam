@@ -1,0 +1,171 @@
+﻿            @using Microsoft.AspNetCore.Http
+@using KGSHOP.Extensions
+@using KGSHOP.Utility
+
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TheZoo Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/fonts/ionicons.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="http://use/fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet" />
+    <script src="http://use.fontawesome.com/f793bf6bf2.js" crossorigin="anonymous"></script>
+
+</head>
+<body style="margin-bottom:0px;">
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary  border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="ProductsList" asp-action="Index">TheZooShop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item text-light"><a class="nav-link text-light" asp-area="Customer" asp-controller="ProductsList" asp-action="Index">Home</a></li>
+
+                        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="GroupProduct" asp-action="Index">GroupProduct</a>
+                            </li>
+                           
+
+                        }
+                        @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                        {
+                            <li class="nav-item"><a class="nav-link text-light" asp-area="Admin" asp-controller="CustomerBuy" asp-action="Index">CustomerBuys</a></li>
+
+                        }
+                        <li class="nav-item"><a class="nav-link text-light" asp-area="Admin" asp-controller="Support" asp-action="Index">Supports</a></li>
+
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link text-light">
+                                    <i class="fa fa-shopping-cart"></i> &nbsp;
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+                                    }
+                                    (@count)
+                                </a>
+
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    <i class="fa fa-shopping-cart"></i> &nbsp;
+
+                                    (0)
+                                </a>
+
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+   
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="w3ls-footer-grids">
+            <div class="container">
+                <div class="col-md-3 w3l-footer one">
+                    <h3>About Company</h3>
+                    <p> TheZooShop is a well-known electronics retailer. Established for more than 20 years, TheZooShop has now spread to more than 50 provinces and cities in Vietnam.</p>
+                    
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-3 w3l-footer one tweet">
+                    <h3>Tweets</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100009246845220">
+                                <i class="fab fa-twitter"></i>TheZooSHop
+                              <i class="fab fa-twitter"></i>
+                            </a>
+                            <span>
+                                About 15 minutes ago<span>
+                                </span>
+                            </span>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/?lang=vi">
+                                <i class="fab fa-twitter"></i>TheZooSHop
+                                <i>twitter.com</i>
+                            </a>
+                            <span>
+                                About a day ago<span>
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 w3l-footer two">
+                    <h3>Keep Connected</h3>
+                    <ul>
+                        <li><a class="fb" href="https://www.facebook.com/ngoctien.pham"><i class="fab fa-facebook-f"></i>Like us on Facebook</a></li>
+                        <li><a class="fb" href="https://twitter.com/?lang=vi"><i class="fab fa-twitter"></i>Follow us on Twitter</a></li>
+                        <li><a class="fb2" href="https://aboutme.google.com/u/0/?referer=gplus"><i class="fab fa-google"></i>Add us on Google Plus</a></li>
+                        <li><a class="fb3" href="https://dribbble.com/"><i class="fab fa-dribbble"></i>Follow us on Dribbble</a></li>
+                        <li><a class="fb4" href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i>Follow us on Pinterest</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 w3l-footer three">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><i class="fa fa-map-marker"></i><p>THEZOOSHOP<span></span>Hoàng Diệu 2, Thủ Đức, Thành Phố Hồ Chí Minh</p><div class="clearfix"></div> </li>
+                        <li><i class="fa fa-phone"></i><p>0387716676</p> <div class="clearfix"></div> </li>
+                        <li><i class="fa fa-info"></i><a href="http://phamngoctien4321@gmail.com">phamngoctien4321@gmail.com</a> <div class="clearfix"></div></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="copy-right-grids">
+            <div class="container">
+                <div class="copy-left">
+                    <p class="footer-gd">© 2020 THEZOOSHOP. Shop is <strong>Mobile </strong> in all the world | Design by <a href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
